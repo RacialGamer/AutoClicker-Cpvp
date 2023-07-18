@@ -14,6 +14,8 @@ A autoclicker made in C# for cpvp.
 1. Go to [releases](https://github.com/RacialGamer/AutoClicker-Cpvp/releases/latest/ "Latest Release")
 2. Download the zip
 3. Extract it and run RacialClicker.exe
+4. If it doesn't run and only opens terminal for a split second download [.NET 6.0](https://dotnet.microsoft.com/en-us/download/ ".NET 6.0")
+
 
  *Note: When starting RacialClicker.exe a Blue Window Will appear most of the time.* \
  To run the application you have to press **More Info** and then **Run Anyways**.
