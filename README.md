@@ -2,7 +2,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/RacialGamer/AutoClicker-Cpvp?style=plastic)
 ![GitHub all releases](https://img.shields.io/github/downloads/RacialGamer/AutoClicker-Cpvp/total?style=plastic)
 
-A autoclicker made in C# for cpvp.
+An autoclicker made in C# for cpvp.
 
 # Features
 - Clicks the cps you specify on both mouse buttons
