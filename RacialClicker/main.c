@@ -45,7 +45,7 @@ int main() {
     }
     printf("Keybind Code: ");
     scanf("%x", &keybind);
-    if (GetKeyState(keybind) == false) {
+    if (GetKeyState(keybind) == 0) {
         printf("Invalid input info. \nCheck https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes for valid inputs. \nBy example: 0x11");
     }
     
