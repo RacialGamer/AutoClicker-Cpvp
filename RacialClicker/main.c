@@ -2,8 +2,8 @@
 #include <windows.h>
 
 
-int cps;
-int delay;
+int cps = 0;
+int delay = 1000;
 int keybind;
 int screen_width;
 int screen_height;
@@ -29,11 +29,26 @@ int main() {
 
     printf("How much cps: ");
     scanf("%d", &cps);
+    if (cps == 0)
+    {
+        printf("Invalid input info. \nrestarting the program...\n\n\n");
+        Sleep(5000);
+        main();
+    }
     printf("Delay between clicks (in milliseconds): ");
     scanf("%d", &delay);
+    if (delay > 999)
+    {
+        printf("Invalid input info, maximum amount of delay is 999. \nrestarting the program...\n\n\n");
+        Sleep(5000);
+        main();
+    }
     printf("Keybind Code: ");
     scanf("%x", &keybind);
-
+    if (GetKeyState(keybind) == false) {
+        printf("Invalid input info. \nCheck https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes for valid inputs. \nBy example: 0x11");
+    }
+    
     screen_width = GetSystemMetrics(SM_CXSCREEN);
     screen_height = GetSystemMetrics(SM_CYSCREEN);
     x = screen_width / 2;
