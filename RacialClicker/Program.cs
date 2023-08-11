@@ -6,8 +6,8 @@ using static System.Net.Mime.MediaTypeNames;
 
 class AutoClicker
 {
-    static int cps;
-    static int delay;
+    static int cps = 0;
+    static int delay = 1000;
     static int keybind;
     static int screen_width;
     static int screen_height;
@@ -25,7 +25,7 @@ class AutoClicker
     const int MOUSEEVENTF_LEFTDOWN = 0x0002;
     const int MOUSEEVENTF_LEFTUP = 0x0004;
 
-    static void Main(string[] args)
+    static void Main()
     {
         Console.WriteLine(@"
     ____             _       ___________      __            
@@ -37,13 +37,28 @@ class AutoClicker
 ");
         Console.Write("How much cps: ");
         cps = int.Parse(Console.ReadLine());
-
+        if (cps == 0)
+        {
+            Console.Write("Invalid input info. \nrestarting the program...\n\n\n");
+            Thread.Sleep(5000);
+            Main();
+        }
         Console.Write("Delay between clicks (in milliseconds): ");
         delay = int.Parse(Console.ReadLine());
-
+        if (delay > 999)
+        {
+            Console.Write("Invalid input info, maximum amount of delay is 999. \nrestarting the program...\n\n\n");
+            Thread.Sleep(5000);
+            Main();
+        }
         Console.Write("Keybind Code: ");
         keybind = Convert.ToInt32(Console.ReadLine(), 16);
-
+        if (GetKeyState(keybind) == 0)
+        {
+            Console.Write("Invalid input info. \nCheck https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes for valid inputs. \nBy example: 0x11 \nrestarting the program...\n\n\n");
+            Thread.Sleep(5000);
+            Main();
+        }
 
         screen_width = Console.WindowWidth;
         screen_height = Console.WindowHeight;
