@@ -46,11 +46,10 @@ int main()
     }
     printf("Keybind Code: ");
     scanf("%x", &Keybind);
-    if (GetKeyState(Keybind) == 0) 
+    if (GetKeyState(Keybind) == 1)
+        // Please help idk how to dectect if a keybind exists
     {
-        printf("Invalid input info. \nCheck https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes for valid inputs. By example: 0x11\n\nrestarting the program...\n\n\n");
-        Sleep(5000);
-        main();
+        printf("\nCheck https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes for more keybinds. By example: 0x11\n\n");
     }
     
     ScreenWidth = GetSystemMetrics(SM_CXSCREEN);
