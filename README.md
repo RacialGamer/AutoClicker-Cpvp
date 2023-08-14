@@ -35,7 +35,15 @@ RacialClicker is designed to work on the following platforms:
 
 ## Disclaimer
 
-Please note that the term "RacialClicker" used in this project's title is unrelated to any sensitive or offensive contexts. The name is used merely as an example for illustrative purposes.
+**Please Note:** This application is provided for educational and illustrative purposes only. Automating mouse clicks using this tool might be against the terms of use of certain applications, games, or websites. Be aware that using automated scripts in such contexts could result in punishments, bans, or anticheat detections.
+
+By using this application, you understand and agree that:
+
+- The developers and maintainers of this application are not responsible for any consequences resulting from the misuse of this tool.
+- We do not endorse or encourage the use of automated clicking tools in situations where it may violate terms of use, disrupt fair play, or harm user experiences.
+- The auto-clicker's randomizer feature has not been tested to ensure bypassing effective anticheat systems.
+
+Use this tool responsibly and at your own risk. Make sure you have proper authorization to use it in the intended environment.
 
 ## License
 
