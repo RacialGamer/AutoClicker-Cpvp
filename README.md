@@ -1,3 +1,6 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/RacialGamer/AutoClicker-Cpvp?style=plastic)
+![GitHub all releases](https://img.shields.io/github/downloads/RacialGamer/AutoClicker-Cpvp/total?style=plastic)
+
 # RacialClicker
 
 RacialClicker is a simple auto-clicker application written in C# that simulates mouse clicks at a given rate. It allows users to define a target clicks per second (CPS) and toggle the auto-clicker functionality using a specific keyboard key.
