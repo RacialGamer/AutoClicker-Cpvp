@@ -3,7 +3,9 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/RacialGamer/AutoClicker-Cpvp?style=plastic)
 ![GitHub all releases](https://img.shields.io/github/downloads/RacialGamer/AutoClicker-Cpvp/total?style=plastic)
 
-RacialClicker is a simple auto-clicker application written in C# that simulates mouse clicks at a given rate. It allows users to define a target clicks per second (CPS) and toggle the auto-clicker functionality using a specific keyboard key.
+RacialClicker is a simple auto-clicker application written in C# that simulates mouse clicks at a given rate. It allows
+users to define a target clicks per second (CPS) and toggle the auto-clicker functionality using a specific keyboard
+key.
 
 ## Features
 
@@ -22,7 +24,8 @@ RacialClicker is designed to work on the following platforms:
 ## Getting Started
 
 1. Clone this repository to your local machine.
-2. Open the solution in your preferred C# development environment (e.g., Visual Studio, Visual Studio Code with appropriate extensions).
+2. Open the solution in your preferred C# development environment (e.g., Visual Studio, Visual Studio Code with
+   appropriate extensions).
 3. Build the project to compile the application.
 
 ## Usage
@@ -35,15 +38,20 @@ RacialClicker is designed to work on the following platforms:
 
 ## Disclaimer
 
-**Please Note:** This application is provided for educational and illustrative purposes only. Automating mouse clicks using this tool might be against the terms of use of certain applications, games, or websites. Be aware that using automated scripts in such contexts could result in punishments, bans, or anticheat detections.
+**Please Note:** This application is provided for educational and illustrative purposes only. Automating mouse clicks
+using this tool might be against the terms of use of certain applications, games, or websites. Be aware that using
+automated scripts in such contexts could result in punishments, bans, or anticheat detections.
 
 By using this application, you understand and agree that:
 
-- The developers and maintainers of this application are not responsible for any consequences resulting from the misuse of this tool.
-- We do not endorse or encourage the use of automated clicking tools in situations where it may violate terms of use, disrupt fair play, or harm user experiences.
+- The developers and maintainers of this application are not responsible for any consequences resulting from the misuse
+  of this tool.
+- We do not endorse or encourage the use of automated clicking tools in situations where it may violate terms of use,
+  disrupt fair play, or harm user experiences.
 - The auto-clicker's randomizer feature has not been tested to ensure bypassing effective anticheat systems.
 
-Use this tool responsibly and at your own risk. Make sure you have proper authorization to use it in the intended environment.
+Use this tool responsibly and at your own risk. Make sure you have proper authorization to use it in the intended
+environment.
 
 ## License
 
