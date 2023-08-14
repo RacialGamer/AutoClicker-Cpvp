@@ -1,4 +1,6 @@
-﻿using SharpHook;
+﻿using System;
+using System.Threading;
+using SharpHook;
 using SharpHook.Native;
 
 namespace RacialClicker;
