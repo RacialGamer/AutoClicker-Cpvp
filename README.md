@@ -36,7 +36,26 @@ repository. Locate and download the latest release for your specific platform (W
 
 Once you've downloaded the executable file, open it to run the auto clicker.
 
-#### For MacOS Users:
+#### For MacOS Users (UNIX Based systems can be a pain :-):
+
+To make the downloaded file executable, follow these steps:
+
+1. **Open Terminal:** Launch the Terminal application on your macOS system.
+
+2. **Navigate to the Directory:** Change the current directory to the one that contains the auto clicker file. You can
+   use the `cd` command to navigate to the appropriate directory.
+
+3. **Grant Execution Permission:** Run the following command in the Terminal. Make sure to replace `RacialClicker-macOS`
+   with the actual name of the downloaded file:
+
+   ```shell
+   chmod +x RacialClicker-macOS
+   ```
+
+   This command uses the `chmod` utility to grant execute permission to the specified file. The `+x` flag allows the
+   file to be executed as a program.
+
+By following these steps, you'll successfully make the downloaded auto clicker file executable and ready to use.
 
 Since the application isn't signed, MacOS might prevent it from running by default. To allow the application to run,
 follow these steps:
