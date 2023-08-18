@@ -21,7 +21,54 @@ RacialClicker is designed to work on the following platforms:
 - **macOS** (including Apple Silicon support)
 - **Linux**
 
-## Getting Started
+## Installation Guide
+
+Follow these steps to install and run the auto clicker on your system:
+
+### 1. Download the Latest Release
+
+Visit the [releases](https://github.com/RacialGamer/AutoClicker-Cpvp/releases) page of this GitHub
+repository. Locate and download the latest release for your specific platform (Windows, MacOS, Linux).
+
+*Note: If your platform isn't provided, you can compile the application from its source code.*
+
+### 2. Run the Application
+
+Once you've downloaded the executable file, open it to run the auto clicker.
+
+#### For MacOS Users:
+
+Since the application isn't signed, MacOS might prevent it from running by default. To allow the application to run,
+follow these steps:
+
+a. Navigate to `System Preferences > Privacy & Security` and scroll down.
+
+b. You'll see a message stating that the application was blocked from running. Click on the `Open Anyway` button next to
+the message.
+
+c. A confirmation dialog will appear asking if you're sure you want to open the application. Click `Open` to proceed.
+This process is illustrated in the following images:
+
+![MacOS Security](docs/MacOS-Security-Pictures/img.png)
+![MacOS Security Warning](docs/MacOS-Security-Pictures/img_1.png)
+![MacOS Security Confirmation](docs/MacOS-Security-Pictures/img_2.png)
+
+### 3. Enabling Accessibility API (MacOS Only)
+
+To use the auto clicker, you need to enable the Accessibility API on your system. This allows the application to
+interact with other programs and automate clicking.
+
+a. Go to `System Preferences > Privacy & Security > Accessibility`.
+
+b. Check the box next to the Auto clicker to grant it accessibility permissions.
+
+c. If the application is not listed, click the `+` button and navigate to the application's location to add it.
+
+d. Once added, make sure the checkbox is enabled for the application.
+
+e. Restart the auto clicker for the changes to take effect.
+
+## Compile from source
 
 1. Clone this repository to your local machine.
 2. Open the solution in your preferred C# development environment (e.g., Visual Studio, Visual Studio Code with
