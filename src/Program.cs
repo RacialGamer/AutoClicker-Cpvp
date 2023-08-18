@@ -19,7 +19,6 @@ internal abstract class AutoClicker
     private static bool _randomizationCps; // Checks if you want Randomized Cps
     private static bool _toggleModeEnabled; // Toggle mode enabled or not.
     private static bool _keyIsHeld; // True, if key is held.
-    private static bool _keyIsReleased = true; // False, if key is released. //TODO: What is the purpose of this?
     private static bool _keyHasBeenSet; // Flag to indicate if the toggle key has been set.
 
     /// <summary>
@@ -140,7 +139,6 @@ internal abstract class AutoClicker
             else
             {
                 _keyIsHeld = true;
-                _keyIsReleased = false;
 
                 if (_autoClickerEnabled) return;
 
@@ -161,7 +159,6 @@ internal abstract class AutoClicker
         if (args.Data.KeyCode != _toggleKey) return;
 
         _keyIsHeld = false;
-        _keyIsReleased = true;
 
         if (!_autoClickerEnabled || _keyIsHeld) return;
 
