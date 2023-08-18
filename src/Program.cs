@@ -19,7 +19,7 @@ internal abstract class AutoClicker
     private static bool _randomizationCps; // Checks if you want Randomized Cps
     private static bool _toggleModeEnabled; // Toggle mode enabled or not.
     private static bool _keyIsHeld; // True, if key is held.
-    private static bool _keyIsReleased = true; // False, if key is released.
+    private static bool _keyIsReleased = true; // False, if key is released. //TODO: What is the purpose of this?
     private static bool _keyHasBeenSet; // Flag to indicate if the toggle key has been set.
 
     /// <summary>
@@ -41,8 +41,8 @@ internal abstract class AutoClicker
         }
         else
         {
-            _minDelay = 1000 / (_targetCps ); // Minimum delay is cps.
-            _maxDelay = 1000 / (_targetCps ); // Maximum delay is cps.  
+            _minDelay = 1000 / _targetCps; // Minimum delay is cps.
+            _maxDelay = 1000 / _targetCps; // Maximum delay is cps.  
         }
 
         Hook.KeyPressed += OnKeyPressed; // Subscribe to the global key press event.
@@ -67,38 +67,45 @@ internal abstract class AutoClicker
         return 12; // Default value
     }
 
-    /// <summary> 
+    /// <summary>
     ///     Checks if you want cps randomization upon input.
     /// </summary>
     /// <returns>true or false.</returns>
     private static bool GetCpsRandomization()
     {
         Console.Write("Do you want cps randomization? (y/n): ");
-        string? input = Console.ReadLine();
-        if (input == "Y" || input == "y")
+        var input = Console.ReadLine();
+        if (input is "Y" or "y")
         {
             Console.WriteLine("Cps Randomization is turned On.");
             return true;
         }
+
         Console.WriteLine("Cps Randomization is turned Off.");
         return false;
     }
 
     private static bool GetToggle()
     {
-        Console.Write("Please select the activation mode for your keybind:\n1. Toggle mode (press once to activate, press again to deactivate)\n2. Hold mode (press and hold to activate, release to deactivate)\nPlease enter the corresponding number (1/2):");
-        string? input = Console.ReadLine();
+        Console.Write("""
+                      Please select the activation mode for your key bind:
+                      1. Toggle mode (press once to activate, press again to deactivate)
+                      2. Hold mode (press and hold to activate, release to deactivate)
+                      Please enter the corresponding number (1/2):
+                      """);
+
+        var input = Console.ReadLine();
         if (input == "1")
         {
             Console.WriteLine("Toggle mode is turned On.");
             return true;
         }
+
         Console.WriteLine("Toggle mode is turned Off.");
         return false;
     }
-    
-    
-    
+
+
     /// <summary>
     ///     Handles the global key press event.
     /// </summary>
@@ -110,14 +117,9 @@ internal abstract class AutoClicker
         {
             _toggleKey = args.Data.KeyCode;
             _keyHasBeenSet = true; // Set the flag indicating that the key has been set.
-            if (_toggleModeEnabled)
-            {
-                Console.WriteLine($"Press {_toggleKey} to toggle the auto clicker.");
-            }
-            else
-            {
-                Console.WriteLine($"Press and hold {_toggleKey} to enable the auto clicker.");
-            }
+            Console.WriteLine(_toggleModeEnabled
+                ? $"Press {_toggleKey} to toggle the auto clicker."
+                : $"Press and hold {_toggleKey} to enable the auto clicker.");
         }
         else if (args.Data.KeyCode == _toggleKey) // Toggle the auto-clicker.
         {
@@ -140,12 +142,11 @@ internal abstract class AutoClicker
                 _keyIsHeld = true;
                 _keyIsReleased = false;
 
-                if (!_autoClickerEnabled)
-                {
-                    _autoClickerEnabled = true;
-                    Console.WriteLine("Auto clicker has been enabled.");
-                    ThreadPool.QueueUserWorkItem(AutoClickLoop);
-                }
+                if (_autoClickerEnabled) return;
+
+                _autoClickerEnabled = true;
+                Console.WriteLine("Auto clicker has been enabled.");
+                ThreadPool.QueueUserWorkItem(AutoClickLoop);
             }
         }
     }
@@ -157,17 +158,15 @@ internal abstract class AutoClicker
     /// <param name="args">The event arguments containing the keyboard input data.</param>
     private static void OnKeyReleased(object? sender, KeyboardHookEventArgs args)
     {
-        if (args.Data.KeyCode == _toggleKey)
-        {
-            _keyIsHeld = false;
-            _keyIsReleased = true;
+        if (args.Data.KeyCode != _toggleKey) return;
 
-            if (_autoClickerEnabled && !_keyIsHeld)
-            {
-                _autoClickerEnabled = false;
-                Console.WriteLine("Auto clicker has been disabled.");
-            }
-        }
+        _keyIsHeld = false;
+        _keyIsReleased = true;
+
+        if (!_autoClickerEnabled || _keyIsHeld) return;
+
+        _autoClickerEnabled = false;
+        Console.WriteLine("Auto clicker has been disabled.");
     }
 
     /// <summary>
@@ -176,10 +175,7 @@ internal abstract class AutoClicker
     /// <param name="state">The state object (unused).</param>
     private static void AutoClickLoop(object? state)
     {
-        while (_autoClickerEnabled)
-        {
-            PerformClick(); // Simulate a mouse click.
-        }
+        while (_autoClickerEnabled) PerformClick(); // Simulate a mouse click.
     }
 
     /// <summary>
@@ -187,7 +183,7 @@ internal abstract class AutoClicker
     /// </summary>
     private static void PerformClick()
     {
-        var randomDelay = Random.Next(_minDelay, _maxDelay);  // Generate a random delay.
+        var randomDelay = Random.Next(_minDelay, _maxDelay); // Generate a random delay.
         Thread.Sleep(randomDelay);
         Simulator.SimulateMousePress(MouseButton.Button2); // Simulate right mouse button press.
         Simulator.SimulateMouseRelease(MouseButton.Button2); // Simulate right mouse button release.
