@@ -9,6 +9,7 @@ namespace RacialClicker;
 internal abstract class AutoClicker
 {
     private static int _targetCps; // The target clicks per second (CPS).
+    private static int _clickMode; // Which mouse click mode to use.
     private static int _minDelay; // Minimum delay between clicks.
     private static int _maxDelay; // Maximum delay between clicks.
     private static bool _autoClickerEnabled; // Flag to indicate if the auto-clicker is enabled.
@@ -29,14 +30,24 @@ internal abstract class AutoClicker
         PrintLabel();
 
         _targetCps = GetTargetCps(); // Get the target CPS from user input.
+        _clickMode = GetClickMode();
         _randomizationCps = GetCpsRandomization(); // Get if CpsRandomization is false or not from user input.
         _toggleModeEnabled = GetToggle(); // Get the mode.
         if (_randomizationCps)
         {
-            Console.WriteLine("The CPS range is between {0} and {1}.", _targetCps - 2, _targetCps + 2);
-
-            _minDelay = 1000 / (_targetCps + 2); // Calculate minimum delay to achieve CPS range.
-            _maxDelay = 1000 / (_targetCps - 2); // Calculate maximum delay to achieve CPS range.
+            if (_targetCps > 2)
+            {
+                Console.WriteLine("The CPS range is between {0} and {1}.", _targetCps - 2, _targetCps + 2);
+                _minDelay = 1000 / (_targetCps + 2); // Calculate minimum delay to achieve CPS range.
+                _maxDelay = 1000 / (_targetCps - 2); // Calculate maximum delay to achieve CPS range.
+                Console.WriteLine("Too low Target Cps, Cannot turn on Cps Randomization.");
+            }
+            else
+            {
+                Console.WriteLine("Too low Target Cps, Cannot turn on Cps Randomization.");
+                _minDelay = 1000 / _targetCps; // Minimum delay is cps.
+                _maxDelay = 1000 / _targetCps; // Maximum delay is cps.  
+            }
         }
         else
         {
@@ -65,6 +76,36 @@ internal abstract class AutoClicker
         Console.WriteLine("Invalid input. Using default target CPS of 12.");
         return 12; // Default value
     }
+    
+    private static int GetClickMode()
+    {
+        Console.Write("""
+                      Please select the mouse click mode you want:
+                      1. Left and Right Click
+                      2. Left Click
+                      3. Right Click
+                      Please enter the corresponding number (1/2/3): 
+                      """);
+
+        var input = Console.ReadLine();
+        if (input == "1")
+        {
+            Console.WriteLine("The Autoclicker will use Left and Right click.\n");
+            return 1;
+        }
+        if (input == "2")
+        {
+            Console.WriteLine("The Autoclicker will only use Left Click.\n");
+            return 2;
+        }
+        if (input == "3")
+        {
+            Console.WriteLine("The Autoclicker will only use Right Click.\n");
+            return 3;
+        }
+        Console.WriteLine("Invalid Input, Using default click mode: Left and Right Click.\n");
+        return 1;
+    }
 
     /// <summary>
     ///     Checks if you want cps randomization upon input.
@@ -76,35 +117,36 @@ internal abstract class AutoClicker
         var input = Console.ReadLine();
         if (input is "Y" or "y")
         {
-            Console.WriteLine("Cps Randomization is turned On.");
+            Console.WriteLine("Cps Randomization is turned On.\n");
             return true;
         }
 
-        Console.WriteLine("Cps Randomization is turned Off.");
+        Console.WriteLine("Cps Randomization is turned Off.\n");
         return false;
     }
 
+    /// <summary>
+    ///     User can select a mode with a corresponding number in the input.
+    /// </summary>
+    /// <returns>true or false.</returns>
     private static bool GetToggle()
     {
         Console.Write("""
                       Please select the activation mode for your key bind:
                       1. Toggle mode (press once to activate, press again to deactivate)
                       2. Hold mode (press and hold to activate, release to deactivate)
-                      Please enter the corresponding number (1/2):
+                      Please enter the corresponding number (1/2): 
                       """);
-
         var input = Console.ReadLine();
         if (input == "1")
         {
-            Console.WriteLine("Toggle mode is turned On.");
+            Console.WriteLine("Toggle mode is turned On.\n");
             return true;
         }
-
-        Console.WriteLine("Toggle mode is turned Off.");
+        Console.WriteLine("Toggle mode is turned Off.\n");
         return false;
     }
-
-
+    
     /// <summary>
     ///     Handles the global key press event.
     /// </summary>
@@ -181,9 +223,16 @@ internal abstract class AutoClicker
     private static void PerformClick()
     {
         var randomDelay = Random.Next(_minDelay, _maxDelay); // Generate a random delay.
-        Thread.Sleep(randomDelay);
-        Simulator.SimulateMousePress(MouseButton.Button2); // Simulate right mouse button press.
-        Simulator.SimulateMouseRelease(MouseButton.Button2); // Simulate right mouse button release.
+        if (_clickMode != 2)
+        {
+            Thread.Sleep(randomDelay);
+            Simulator.SimulateMousePress(MouseButton.Button2); // Simulate right mouse button press.
+            Simulator.SimulateMouseRelease(MouseButton.Button2); // Simulate right mouse button release.
+        }
+        if (_clickMode == 3)
+        {
+            return;
+        }
         Thread.Sleep(randomDelay);
         Simulator.SimulateMousePress(MouseButton.Button1); // Simulate left mouse button press.
         Simulator.SimulateMouseRelease(MouseButton.Button1); // Simulate left mouse button release.
